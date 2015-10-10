@@ -1,3 +1,6 @@
+import subprocess
+
+
 class Pipe(object):
     def __init__(self, fn):
         self.fn = fn
@@ -8,3 +11,11 @@ class Pipe(object):
 
 def add():
     return Pipe(sum)
+
+
+def process(command):
+    def work(data):
+        p = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        stdout, stderr = p.communicate(input=data)
+        return stdout
+    return Pipe(work)
