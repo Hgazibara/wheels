@@ -13,6 +13,10 @@ def add():
     return Pipe(sum)
 
 
+def mul():
+    return Pipe(lambda data: reduce(lambda x, y: x*y, data, 1))
+
+
 def process(command):
     def work(data):
         p = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
