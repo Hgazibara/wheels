@@ -1,3 +1,5 @@
+import functools
+import operator
 import subprocess
 
 
@@ -13,8 +15,8 @@ def add():
     return Pipe(sum)
 
 
-def mul():
-    return Pipe(lambda data: reduce(lambda x, y: x*y, data, 1))
+def multiply():
+    return Pipe(functools.partial(reduce, operator.mul))
 
 
 def process(command):
